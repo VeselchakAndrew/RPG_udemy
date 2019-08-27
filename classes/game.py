@@ -1,4 +1,5 @@
 import random
+from .magic import Spell
 
 
 class bcolors:
@@ -13,7 +14,7 @@ class bcolors:
 
 
 class Person:
-    def __init__(self, hp, mp, attk, df, magic):
+    def __init__(self, hp, mp, attk, df, magic, items):
         self.maxhp = hp
         self.hp = hp
         self.maxmp = mp
@@ -22,18 +23,11 @@ class Person:
         self.attkh = attk + 10
         self.df = df
         self.magic = magic
-        self.action = ['Attack', 'Magic']
+        self.items = items
+        self.action = ['Attack', 'Magic', 'Item']
 
     def generate_damage(self):
         return random.randrange(self.attkl, self.attkh)
-
-    def generate_spell_damage(self, i):
-        mgl = self.magic[i]['dmg'] - 5
-        mgh = self.magic[i]['dmg'] + 5
-        return random.randrange(mgl, mgh)
-
-    def get_spell_name(self, i):
-        return self.magic[i]['name']
 
     def take_damage(self, dmg):
         self.hp -= dmg
@@ -61,19 +55,27 @@ class Person:
     def reduce_mp(self, cost):
         self.mp -= cost
 
-    def get_spell_mp_cost(self, i):
-        return self.magic[i]['cost']
-
     def choose_action(self):
         i = 1
-        print(bcolors.OKBLUE + bcolors.BOLD + 'Action' + bcolors.ENDC)
+        print(bcolors.OKBLUE + bcolors.BOLD + 'ACTION' + bcolors.ENDC)
         for item in self.action:
-            print(str(i) + ':', item)
+            print(f'\t{i}. {item}')
             i += 1
 
     def choose_magic(self):
         i = 1
-        print(bcolors.OKBLUE + bcolors.BOLD + 'Magic' + bcolors.ENDC)
+        print(bcolors.OKBLUE + bcolors.BOLD + 'MAGIC:' + bcolors.ENDC)
         for spell in self.magic:
-            print(str(i) + ':', spell['name'])
+            if spell.school == 'black':
+                print(f'\t{i}: {spell.name} (cost: {spell.cost}, damage: {spell.dmg})')
+            else:
+                print(f'\t{i}: {spell.name} (cost: {spell.cost}, heal: {spell.dmg})')
+
+            i += 1
+
+    def choose_item(self):
+        i = 1
+        print(bcolors.OKBLUE + bcolors.BOLD + 'ITEM:' + bcolors.ENDC)
+        for item in self.items:
+            print(f'\t{i}: {item.name}, {item.description}, 5x')
             i += 1
