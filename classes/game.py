@@ -88,5 +88,5 @@ class Person:
         i = 1
         print(bcolors.OKBLUE + bcolors.BOLD + 'ITEM:' + bcolors.ENDC)
         for item in self.items:
-            print(f'\t{i}: {item.name}, {item.description}, 5x')
+            print(f'\t {str(i)}. {item["item"].name}, {item["item"].description}, {item["quantity"]}x')
             i += 1

@@ -4,8 +4,8 @@ from classes.inventory import Item
 
 # magic
 # Create Black Magic
-fire = Spell('Fire', 10, 150, "black")
-thunder = Spell('Thunder', 12, 170, "black")
+fire = Spell('Fire', 10, 150, 'black')
+thunder = Spell('Thunder', 12, 170, 'black')
 blizzard = Spell('Blizzard', 15, 200, "black")
 meteor = Spell('Meteor', 20, 250, "black")
 quake = Spell('Quake', 8, 120, "black")
@@ -24,7 +24,14 @@ hielixir = Item("HiElixir", "hielixir", "Fully restore HP/MP for all members of 
 grenade = Item("Grenade", "attack", "Deal 500HP damage", 500)
 
 player_spell = [fire, thunder, blizzard, meteor, quake, cure, cura]
-player_item = [potion, hipotion, superpotion, elixir, hielixir, grenade]
+player_item = [{"item": potion, 'quantity': 10},
+               {'item': hipotion, 'quantity': 5},
+               {'item': superpotion, 'quantity': 1},
+               {'item': elixir, 'quantity': 1},
+               {'item': hielixir, 'quantity': 1},
+               {'item': grenade, 'quantity': 2}]
+
+
 # Initiate Players
 player = Person(460, 65, 60, 34, player_spell, player_item)
 enemy = Person(1200, 64, 45, 25, [], [])
@@ -77,12 +84,18 @@ while running:
         if item_choice == -1:
             continue
 
-        item = player_item[item_choice]
+        item = player_item[item_choice]["item"]
+
+        if player_item[item_choice]["quantity"] == 0:
+            print(f"{bcolors.FAIL}Non {item.name} left...{bcolors.ENDC}")
+            continue
+
+        player_item[item_choice]["quantity"] -= 1
 
         # use potion
         if item.type == 'potion':
             player.heal(item.prop)
-            print(f"{bcolors.OKBLUE} \n{item.name} heal {item.prop}HP. You HP: {player.get_hp()} {bcolors.ENDC}")
+            print(f"{bcolors.OKBLUE} \n{item.name} heal {item.prop}HP. You HP is: {player.get_hp()} {bcolors.ENDC}")
 
         # use elixir
         elif item.type == 'elixir':
