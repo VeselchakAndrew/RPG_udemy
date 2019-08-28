@@ -26,35 +26,44 @@ class Person:
         self.items = items
         self.action = ['Attack', 'Magic', 'Item']
 
+    # нанесение урона
     def generate_damage(self):
         return random.randrange(self.attkl, self.attkh)
 
+    # принятие урона
     def take_damage(self, dmg):
         self.hp -= dmg
         if self.hp < 0:
             self.hp = 0
         return self.hp
 
+    # лечение
     def heal(self, dmg):
         self.hp += dmg
         if self.hp > self.maxhp:
             self.hp = self.maxhp
 
+    # количество жизни
     def get_hp(self):
         return self.hp
 
+    # максимальное количество жизни
     def get_max_hp(self):
         return self.maxhp
 
+    # количество магии
     def get_mp(self):
         return self.mp
 
+    # максимальное количество магии
     def get_max_mp(self):
         return self.maxmp
 
+    # уменьшение магии при заклинаниях
     def reduce_mp(self, cost):
         self.mp -= cost
 
+    # выбор действия
     def choose_action(self):
         i = 1
         print(bcolors.OKBLUE + bcolors.BOLD + 'ACTION' + bcolors.ENDC)
@@ -62,6 +71,7 @@ class Person:
             print(f'\t{i}. {item}')
             i += 1
 
+    # выбор магии
     def choose_magic(self):
         i = 1
         print(bcolors.OKBLUE + bcolors.BOLD + 'MAGIC:' + bcolors.ENDC)
@@ -73,6 +83,7 @@ class Person:
 
             i += 1
 
+    # выбор предмета
     def choose_item(self):
         i = 1
         print(bcolors.OKBLUE + bcolors.BOLD + 'ITEM:' + bcolors.ENDC)

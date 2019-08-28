@@ -14,7 +14,7 @@ quake = Spell('Quake', 8, 120, "black")
 cure = Spell('Cure', 10, 150, "white")
 cura = Spell('Cura', 18, 250, "white")
 
-#Items
+# Items
 potion = Item("Potion", "potion", "Restore 50HP", 50)
 hipotion = Item("Hi-Potion", "hipotion", "Restore 100HP", 100)
 superpotion = Item("SuperPotion", "superpotion", "Restore 200HP", 200)
@@ -38,11 +38,13 @@ while running:
     player.choose_action()
     choice = int(input('Choice action: ')) - 1
 
+    # simple attack
     if choice == 0:
         dmg = player.generate_damage()
         enemy.take_damage(dmg)
         print(f'You attacked for {bcolors.FAIL}{bcolors.BOLD}{dmg}{bcolors.ENDC} points of damage. Enemy HP: {enemy.get_hp()}')
 
+    # use magic
     elif choice == 1:
         player.choose_magic()
         magic_choice = int(input('Choice magic: ')) - 1
@@ -64,6 +66,9 @@ while running:
             enemy.take_damage(magic_dmg)
             print(f"{bcolors.OKBLUE} \n{spell.name}  deals {magic_dmg} points of damage {bcolors.ENDC}")
 
+        player.reduce_mp(spell.cost)
+
+    # use item
     elif choice == 2:
         player.choose_item()
         print('Type 0 to exit')
@@ -74,14 +79,23 @@ while running:
 
         item = player_item[item_choice]
 
+        # use potion
         if item.type == 'potion':
             player.heal(item.prop)
             print(f"{bcolors.OKBLUE} \n{item.name} heal {item.prop}HP. You HP: {player.get_hp()} {bcolors.ENDC}")
 
+        # use elixir
+        elif item.type == 'elixir':
+            player.hp = player.maxhp
+            player.mp = player.maxmp
+            print(f'{bcolors.OKGREEN}{item.name} restore all HP/MP{bcolors.ENDC}')
 
+        # use grenade
+        elif item.type == "attack":
+            enemy.take_damage(item.prop)
+            print(f"{bcolors.FAIL}{item.name} deal {item.prop} points of damage.{bcolors.ENDC}")
 
-        
-
+    # enemy turn
     enemy_choice = 1
     enemy_dmg = enemy.generate_damage()
     player.take_damage(enemy_dmg)
@@ -93,6 +107,7 @@ while running:
     print(f'Your HP: {bcolors.OKGREEN}{player.get_hp()} / {player.get_max_hp()}{bcolors.ENDC}')
     print(f'Your MP: {bcolors.OKBLUE}{player.get_mp()} / {player.get_max_mp()}{bcolors.ENDC}')
 
+    # game over
     if enemy.get_hp() == 0:
         print(bcolors.OKGREEN + "You Win!!!" + bcolors.ENDC)
         running = False
