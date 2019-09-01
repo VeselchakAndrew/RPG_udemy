@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b47e712-3125-4f9e-94e9-dbf80d6370ed" name="Default Changelist" comment="">
+    <list default="true" id="7b47e712-3125-4f9e-94e9-dbf80d6370ed" name="Default Changelist" comment="Add Item's quantity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +102,8 @@
       <workItem from="1566926165706" duration="2747000" />
       <workItem from="1566983456263" duration="766000" />
       <workItem from="1566984601989" duration="103000" />
-      <workItem from="1566984723506" duration="12983000" />
+      <workItem from="1566984723506" duration="13685000" />
+      <workItem from="1567161839612" duration="1247000" />
     </task>
     <task id="LOCAL-00001" summary="Add Class 'Items'">
       <created>1566928283517</created>
@@ -120,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566990919356</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add Item's quantity">
+      <created>1567002613742</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1567002613742</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,7 +148,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Class 'Items'" />
     <MESSAGE value="Add usage for Items" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add usage for Items" />
+    <MESSAGE value="Add Item's quantity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Item's quantity" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RPG_udemy$test.coverage" NAME="test Coverage Results" MODIFIED="1566992117895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/classes" />
