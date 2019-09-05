@@ -14,7 +14,8 @@ class bcolors:
 
 
 class Person:
-    def __init__(self, hp, mp, attk, df, magic, items):
+    def __init__(self, name, hp, mp, attk, df, magic, items):
+        self.name = name
         self.maxhp = hp
         self.hp = hp
         self.maxmp = mp
@@ -90,3 +91,8 @@ class Person:
         for item in self.items:
             print(f'\t {str(i)}. {item["item"].name}, {item["item"].description}, {item["quantity"]}x')
             i += 1
+
+    def get_stats(self):
+        print(f'{bcolors.BOLD}Name\t\tHP\t\t\t _________________________\t\tMP\t\t ____________{bcolors.ENDC}')
+        print(f'{bcolors.BOLD}{self.name}:\t\t{self.hp}/{self.maxhp}\t\t|{bcolors.OKGREEN}██████████████           {bcolors.ENDC}|'
+              f'\t\t{bcolors.BOLD}{self.mp}/{self.maxmp}\t|{bcolors.OKBLUE}██████████  {bcolors.ENDC}|')
